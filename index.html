@@ -1,303 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biryani & More Zone</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-    body { background: #f8f8f8; }
-
-    /* Login/Register */
-    #loginPage {
-      height: 100vh; display: flex; justify-content: center; align-items: center;
-      background: url('https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg') no-repeat center center fixed;
-      background-size: cover;
-    }
-    .login-container {
-      background: rgba(255, 255, 255, 0.9);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      width: 350px;
-      text-align: center;
-    }
-    .login-container h1 { margin-bottom: 20px; color: #ff5733; }
-    .login-container input {
-      width: 100%; padding: 12px 15px; margin: 10px 0;
-      border-radius: 8px; border: 1px solid #ccc;
-    }
-    .login-container button {
-      width: 100%; padding: 12px; background: #ff5733; color: white;
-      font-weight: bold; border: none; border-radius: 8px;
-      margin-top: 10px; cursor: pointer; font-size: 16px;
-    }
-    .login-container button:hover { background: #e64a19; }
-    .divider { margin: 20px 0; border-bottom: 1px solid #ccc; }
-
-    /* Food Page */
-    #foodPage { display: none; }
-    header { background: #ff5733; color: white; padding: 20px; text-align: center; position: relative; }
-    header h1 { margin: 0; }
-    .logout { position: absolute; right: 20px; top: 20px; background: white; color: #ff5733; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-weight: bold; }
-    .logout:hover { background: #ffe1d6; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; padding: 20px; }
-    .card { background: white; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 15px; text-align: center; }
-    .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 12px; }
-    button { margin-top: 10px; padding: 10px 15px; border: none; background: #ff5733; color: white; font-weight: bold; border-radius: 8px; cursor: pointer; }
-    button:hover { background: #e64a19; }
-    #cart { margin: 20px; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    #paymentSection { margin-top: 20px; display: none; }
-    #upiDetails, #cardDetails, #codDetails, #walletDetails { display: none; margin-top: 15px; text-align: center; }
-    #upiDetails img { width: 200px; border: 2px solid #ccc; border-radius: 12px; }
-    select { padding: 8px; border-radius: 6px; border: 1px solid #ccc; }
-    #deliverySection { display: none; margin-top: 20px; background: #fff8f2; padding: 15px; border-radius: 10px; }
-    #deliverySection input { width: 100%; padding: 10px; margin: 8px 0; border-radius: 6px; border: 1px solid #ccc; }
-    #successMessage { display: none; margin-top: 20px; text-align: center; background: #d4edda; color: #155724; padding: 15px; border-radius: 8px; font-weight: bold; }
-    #history { margin: 20px; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    #trackingMap { margin:20px; padding:20px; background:#fff; border-radius:10px; box-shadow:0 4px 6px rgba(0,0,0,0.1); text-align:center; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biryani & More Zone</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif;}
+body{background:#f8f8f8;}
+#loginPage{height:100vh;display:flex;justify-content:center;align-items:center;background:url('https://images.pexels.com/photos/1640773/pexels-photo-1640773.jpeg') no-repeat center center fixed;background-size:cover;}
+.login-container{background:rgba(255,255,255,0.9);padding:40px;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,0.3);width:350px;text-align:center;}
+.login-container h1{margin-bottom:20px;color:#ff5733;}
+.login-container input{width:100%;padding:12px 15px;margin:10px 0;border-radius:8px;border:1px solid #ccc;}
+.login-container button{width:100%;padding:12px;background:#ff5733;color:white;font-weight:bold;border:none;border-radius:8px;margin-top:10px;cursor:pointer;font-size:16px;}
+.login-container button:hover{background:#e64a19;}
+.divider{margin:20px 0;border-bottom:1px solid #ccc;}
+#foodPage{display:none;}
+header{background:#ff5733;color:white;padding:20px;text-align:center;position:relative;}
+header h1{margin:0;}
+.logout{position:absolute;right:20px;top:20px;background:white;color:#ff5733;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-weight:bold;}
+.logout:hover{background:#ffe1d6;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;padding:20px;}
+.card{background:white;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,0.1);padding:15px;text-align:center;}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:12px;}
+button{margin-top:10px;padding:10px 15px;border:none;background:#ff5733;color:white;font-weight:bold;border-radius:8px;cursor:pointer;}
+button:hover{background:#e64a19;}
+#cart{margin:20px;background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 6px rgba(0,0,0,0.1);}
+#paymentSection,#deliverySection,#successMessage{display:none;}
+#upiDetails,#cardDetails,#codDetails,#walletDetails{display:none;margin-top:15px;text-align:center;}
+#upiDetails img{width:200px;border:2px solid #ccc;border-radius:12px;}
+select{padding:8px;border-radius:6px;border:1px solid #ccc;}
+#deliverySection input{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;}
+#history{margin:20px;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.1);}
+#trackingMap{margin:20px;padding:20px;background:#fff;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.1);text-align:center;}
+</style>
 </head>
 <body>
 
-  <!-- Login/Register Page -->
-  <div id="loginPage">
-    <div class="login-container">
-      <h1>🍴 Biryani & More Zone</h1>
+<!-- Login/Register Page -->
+<div id="loginPage">
+  <div class="login-container">
+    <h1>🍴 Biryani & More Zone</h1>
+    <h2>Register</h2>
+    <input type="text" id="regName" placeholder="Full Name">
+    <input type="email" id="regEmail" placeholder="Email">
+    <input type="password" id="regPassword" placeholder="Password">
+    <button onclick="registerUser()">Register</button>
+    <div class="divider"></div>
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginPassword" placeholder="Password">
+    <button onclick="loginUser()">Login</button>
+  </div>
+</div>
 
-      <h2>Register</h2>
-      <input type="text" id="regName" placeholder="Full Name">
-      <input type="email" id="regEmail" placeholder="Email">
-      <input type="password" id="regPassword" placeholder="Password">
-      <button onclick="registerUser()">Register</button>
+<!-- Food Ordering Page -->
+<div id="foodPage">
+  <header>
+    <h1>🍴 Biryani & More Zone</h1>
+    <button class="logout" onclick="logoutUser()">Logout</button>
+  </header>
 
-      <div class="divider"></div>
+  <div class="grid" id="foodGrid"></div>
 
-      <h2>Login</h2>
-      <input type="email" id="loginEmail" placeholder="Email">
-      <input type="password" id="loginPassword" placeholder="Password">
-      <button onclick="loginUser()">Login</button>
+  <div id="cart">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cartItems"></ul>
+    <h3>Total: ₹<span id="total">0</span></h3>
+    <button onclick="checkout()">Proceed to Pay</button>
+
+    <div id="paymentSection">
+      <h3>💳 Choose Payment Method</h3>
+      <select id="paymentMethod" onchange="showPaymentOption()">
+        <option value="">-- Select Payment Method --</option>
+        <option value="upi">📲 UPI</option>
+        <option value="card">💳 Credit/Debit Card</option>
+        <option value="cod">💵 Cash on Delivery</option>
+        <option value="wallet">📱 Wallet</option>
+      </select>
+
+      <div id="upiDetails">
+        <h3>📲 Pay via UPI</h3>
+        <img src="https://www.gs1us.org/content/dam/gs1us/images/landing-pages/2d-barcodes/qr-code-2d%402x.png">
+        <p>UPI ID: <b>biryani@upi</b></p>
+        <button onclick="showDelivery()">I Have Paid</button>
+      </div>
+      <div id="cardDetails">
+        <h3>💳 Card Payment</h3>
+        <input type="text" placeholder="Card Number"><br><br>
+        <input type="text" placeholder="Expiry Date"><br><br>
+        <input type="text" placeholder="CVV"><br><br>
+        <button onclick="showDelivery()">Pay Now</button>
+      </div>
+      <div id="codDetails">
+        <h3>💵 Cash on Delivery</h3>
+        <p>Pay when your order arrives ✅</p>
+        <button onclick="showDelivery()">Confirm Order</button>
+      </div>
+      <div id="walletDetails">
+        <h3>📱 Wallet Payment</h3>
+        <p>Pay via Paytm / PhonePe / Amazon Pay</p>
+        <button onclick="showDelivery()">Pay with Wallet</button>
+      </div>
     </div>
+
+    <div id="deliverySection">
+      <h3>🚚 Delivery Details</h3>
+      <input type="text" id="address" placeholder="Enter Address">
+      <input type="text" id="phone" placeholder="Enter Phone Number">
+      <button onclick="placeOrder()">Place Order</button>
+    </div>
+
+    <div id="successMessage">🎉 Your order has been placed successfully! 🍽️</div>
   </div>
 
-  <!-- Food Ordering Page -->
-  <div id="foodPage">
-    <header>
-      <h1>🍴 Biryani & More Zone</h1>
-      <button class="logout" onclick="logoutUser()">Logout</button>
-    </header>
-
-    <div class="grid" id="foodGrid"></div>
-
-    <div id="cart">
-      <h2>🛒 Your Cart</h2>
-      <ul id="cartItems"></ul>
-      <h3>Total: ₹<span id="total">0</span></h3>
-      <button onclick="checkout()">Proceed to Pay</button>
-
-      <div id="paymentSection">
-        <h3>💳 Choose Payment Method</h3>
-        <select id="paymentMethod" onchange="showPaymentOption()">
-          <option value="">-- Select Payment Method --</option>
-          <option value="upi">📲 UPI</option>
-          <option value="card">💳 Credit/Debit Card</option>
-          <option value="cod">💵 Cash on Delivery</option>
-          <option value="wallet">📱 Wallet (Paytm/PhonePe)</option>
-        </select>
-
-        <div id="upiDetails">
-          <h3>📲 Pay via UPI</h3>
-          <img src="https://www.gs1us.org/content/dam/gs1us/images/landing-pages/2d-barcodes/qr-code-2d%402x.png" alt="UPI QR Code">
-          <p>UPI ID: <b>biryani@upi</b></p>
-          <button onclick="showDelivery()">I Have Paid</button>
-        </div>
-
-        <div id="cardDetails">
-          <h3>💳 Card Payment</h3>
-          <input type="text" placeholder="Card Number"><br><br>
-          <input type="text" placeholder="Expiry Date (MM/YY)"><br><br>
-          <input type="text" placeholder="CVV"><br><br>
-          <button onclick="showDelivery()">Pay Now</button>
-        </div>
-
-        <div id="codDetails">
-          <h3>💵 Cash on Delivery</h3>
-          <p>Pay when your order arrives. ✅</p>
-          <button onclick="showDelivery()">Confirm Order</button>
-        </div>
-
-        <div id="walletDetails">
-          <h3>📱 Wallet Payment</h3>
-          <p>Pay via Paytm / PhonePe / Amazon Pay</p>
-          <button onclick="showDelivery()">Pay with Wallet</button>
-        </div>
-      </div>
-
-      <div id="deliverySection">
-        <h3>🚚 Delivery Details</h3>
-        <input type="text" id="address" placeholder="Enter Address">
-        <input type="text" id="phone" placeholder="Enter Phone Number">
-        <button onclick="placeOrder()">Place Order</button>
-      </div>
-
-      <div id="successMessage">🎉 Your order has been placed successfully! 🍽️</div>
-    </div>
-
-    <!-- Order History -->
-    <div id="history">
-      <h2>📜 Order History</h2>
-      <ul id="orderHistory"></ul>
-    </div>
-
-    <!-- Warangal Tracking Map -->
-    <div id="trackingMap">
-      <h2>🗺️ Track Delivery (Warangal)</h2>
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37938.16061976838!2d79.55960928725303!3d17.978423756944954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a33450f82cf3c63%3A0x88652b5120a4f0e7!2sWarangal%2C%20Telangana!5e0!3m2!1sen!2sin!4v1695479990000!5m2!1sen!2sin" 
-        width="100%" 
-        height="400" 
-        style="border:0; border-radius:10px;" 
-        allowfullscreen="" 
-        loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-
+  <div id="history">
+    <h2>📜 Order History</h2>
+    <ul id="orderHistory"></ul>
   </div>
 
-  <script>
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let cart = [];
-    let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+  <div id="trackingMap">
+    <h2>🗺️ Track Delivery (Warangal)</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37938.16061976838!2d79.55960928725303!3d17.978423756944954!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a33450f82cf3c63%3A0x88652b5120a4f0e7!2sWarangal%2C%20Telangana!5e0!3m2!1sen!2sin!4v1695479990000!5m2!1sen!2sin" width="100%" height="400" style="border:0;border-radius:10px;" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</div>
 
-    function registerUser() {
-      const name = document.getElementById("regName").value;
-      const email = document.getElementById("regEmail").value;
-      const password = document.getElementById("regPassword").value;
-      if (!name || !email || !password) { alert("Please fill all fields!"); return; }
-      if (users.some(u => u.email === email)) { alert("User already exists!"); return; }
-      users.push({ name, email, password });
-      localStorage.setItem("users", JSON.stringify(users));
-      alert("Registration successful! Please login.");
-    }
+<script>
+// ===== Simulated Backend + API in Frontend =====
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+let cart = [];
+const products = [
+{ id:1, name:"Hyderabadi Biryani", image:"https://1.bp.blogspot.com/-3atUVHlsE0U/YIcgH7jHOCI/AAAAAAAASIE/1TxRFFlU5qEK-X7iZry8oQq6f8BivC9DgCLcBGAsYHQ/s1200/Biryani-1.jpg", price:180 },
+{ id:2, name:"Ambur Biryani", image:"http://masthfood.com/wp-content/uploads/2022/01/Ambur-Biryani-e1641980747860.jpg", price:170 },
+{ id:3, name:"Dindigul Biryani", image:"https://curlytales.com/wp-content/uploads/2024/02/Dindigul-biryani-1-800x450.jpg", price:190 },
+{ id:4, name:"Thalassery Biryani", image:"https://1.bp.blogspot.com/-5cnS8blfyzk/WAE05rsAdSI/AAAAAAAAAns/SKCvZnescsgE5efZEWBzW6EODvm8UaDtgCEw/s1600/z17.jpg", price:200 },
+{ id:5, name:"Malabar Biryani", image:"https://tse4.mm.bing.net/th/id/OIP.GnIsX_va97zGqH3wSq1-PwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3", price:190 },
+{ id:6, name:"Chettinad Biryani", image:"https://3.bp.blogspot.com/-h_Y5854MFCo/TuyHAiJnIFI/AAAAAAAANhs/GB1yhvUbj3M/s1600/cb+middle+g.jpg", price:200 },
+{ id:7, name:"Paneer Biryani", image:"https://anantha.in/wp-content/uploads/2021/03/paneer-biryani.jpg", price:160 },
+{ id:8, name:"Egg Biryani", image:"https://3.bp.blogspot.com/-Be6ifwfWIzk/T1fYs90bz-I/AAAAAAAAAco/uHk8a1vwCNg/s1600/March+(44).JPG", price:150 },
+{ id:9, name:"Mushroom Biryani", image:"https://vaya.in/recipes/wp-content/uploads/2018/03/Mushroom-Biryani.jpg", price:170 }
+];
 
-    function loginUser() {
-      const email = document.getElementById("loginEmail").value;
-      const password = document.getElementById("loginPassword").value;
-      const user = users.find(u => u.email === email && u.password === password);
-      if (user) {
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("foodPage").style.display = "block";
-        renderItems(); renderHistory();
-      } else {
-        alert("Invalid email or password!");
-      }
-    }
+// ===== Functions =====
+function registerUser(){
+  const name=document.getElementById("regName").value;
+  const email=document.getElementById("regEmail").value;
+  const password=document.getElementById("regPassword").value;
+  if(!name||!email||!password){alert("Fill all fields!");return;}
+  if(users.some(u=>u.email===email)){alert("User exists!"); return;}
+  users.push({name,email,password});
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Registration successful! Login now.");
+}
 
-    function logoutUser() {
-      localStorage.removeItem("currentUser");
-      document.getElementById("loginPage").style.display = "flex";
-      document.getElementById("foodPage").style.display = "none";
-    }
+function loginUser(){
+  const email=document.getElementById("loginEmail").value;
+  const password=document.getElementById("loginPassword").value;
+  const user=users.find(u=>u.email===email && u.password===password);
+  if(!user){alert("Invalid credentials!"); return;}
+  localStorage.setItem("currentUser",JSON.stringify(user));
+  document.getElementById("loginPage").style.display="none";
+  document.getElementById("foodPage").style.display="block";
+  renderItems(); renderHistory();
+}
 
-    window.onload = () => {
-      if (localStorage.getItem("currentUser")) {
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("foodPage").style.display = "block";
-        renderItems(); renderHistory();
-      }
-    };
+function logoutUser(){
+  localStorage.removeItem("currentUser");
+  document.getElementById("loginPage").style.display="flex";
+  document.getElementById("foodPage").style.display="none";
+}
 
-    const items = [
-      { name: "Hyderabadi Biryani", image: "https://1.bp.blogspot.com/-3atUVHlsE0U/YIcgH7jHOCI/AAAAAAAASIE/1TxRFFlU5qEK-X7iZry8oQq6f8BivC9DgCLcBGAsYHQ/s1200/Biryani-1.jpg", price: 180 },
-      { name: "Ambur Biryani", image: "http://masthfood.com/wp-content/uploads/2022/01/Ambur-Biryani-e1641980747860.jpg", price: 170 },
-      { name: "Dindigul Biryani", image: "https://curlytales.com/wp-content/uploads/2024/02/Dindigul-biryani-1-800x450.jpg", price: 190 },
-      { name: "Thalassery Biryani", image: "https://1.bp.blogspot.com/-5cnS8blfyzk/WAE05rsAdSI/AAAAAAAAAns/SKCvZnescsgE5efZEWBzW6EODvm8UaDtgCEw/s1600/z17.jpg", price: 200 },
-      { name: "Malabar Biryani", image: "https://tse4.mm.bing.net/th/id/OIP.GnIsX_va97zGqH3wSq1-PwHaE7?rs=1&pid=ImgDetMain&o=7&rm=3", price: 190 },
-      { name: "Chettinad Biryani", image: "https://3.bp.blogspot.com/-h_Y5854MFCo/TuyHAiJnIFI/AAAAAAAANhs/GB1yhvUbj3M/s1600/cb+middle+g.jpg", price: 200 },
-      { name: "Paneer Biryani", image: "https://anantha.in/wp-content/uploads/2021/03/paneer-biryani.jpg", price: 160 },
-      { name: "Egg Biryani", image: "https://3.bp.blogspot.com/-Be6ifwfWIzk/T1fYs90bz-I/AAAAAAAAAco/uHk8a1vwCNg/s1600/March+(44).JPG", price: 150 },
-      { name: "Mushroom Biryani", image: "https://vaya.in/recipes/wp-content/uploads/2018/03/Mushroom-Biryani.jpg", price: 170 }
-    ];
+// Render products
+function renderItems(){
+  const grid=document.getElementById("foodGrid"); grid.innerHTML="";
+  products.forEach(p=>{
+    const div=document.createElement("div"); div.className="card";
+    div.innerHTML=`<img src="${p.image}"><h3>${p.name}</h3><p>₹${p.price}</p><button onclick="addToCart(${p.id})">Add to Cart</button>`;
+    grid.appendChild(div);
+  });
+}
 
-    function renderItems() {
-      const foodGrid = document.getElementById("foodGrid");
-      foodGrid.innerHTML = "";
-      items.forEach((item, index) => {
-        foodGrid.innerHTML += `
-          <div class="card">
-            <img src="${item.image}" alt="${item.name}">
-            <h3>${item.name}</h3>
-            <p>₹${item.price}</p>
-            <button onclick="addToCart(${index})">Add to Cart</button>
-          </div>`;
-      });
-    }
+// Cart
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const exist=cart.find(c=>c.id===id);
+  if(exist) exist.qty++; else cart.push({...p, qty:1});
+  renderCart();
+}
+function renderCart(){
+  const ul=document.getElementById("cartItems"); ul.innerHTML="";
+  let total=0;
+  cart.forEach(c=>{ul.innerHTML+=`<li>${c.name} x ${c.qty} = ₹${c.price*c.qty}</li>`; total+=c.price*c.qty;});
+  document.getElementById("total").innerText=total;
+}
 
-    function addToCart(index) {
-      cart.push(items[index]);
-      renderCart();
-    }
+// Payment & Delivery
+function checkout(){document.getElementById("paymentSection").style.display="block";}
+function showPaymentOption(){["upiDetails","cardDetails","codDetails","walletDetails"].forEach(id=>document.getElementById(id).style.display="none");const m=document.getElementById("paymentMethod").value;if(m) document.getElementById(m+"Details").style.display="block";}
+function showDelivery(){document.getElementById("deliverySection").style.display="block";}
+function placeOrder(){
+  const address=document.getElementById("address").value;
+  const phone=document.getElementById("phone").value;
+  if(!address||!phone){alert("Enter delivery details!"); return;}
+  history.push({items:cart,total:document.getElementById("total").innerText,address,phone,date:new Date().toLocaleString()});
+  localStorage.setItem("orderHistory",JSON.stringify(history));
+  cart=[]; renderCart(); document.getElementById("paymentSection").style.display="none";
+  document.getElementById("deliverySection").style.display="none";
+  document.getElementById("successMessage").style.display="block";
+  setTimeout(()=>document.getElementById("successMessage").style.display="none",3000);
+  renderHistory();
+}
 
-    function renderCart() {
-      const cartItems = document.getElementById("cartItems");
-      cartItems.innerHTML = "";
-      let total = 0;
-      cart.forEach(item => {
-        cartItems.innerHTML += `<li>${item.name} - ₹${item.price}</li>`;
-        total += item.price;
-      });
-      document.getElementById("total").innerText = total;
-    }
+function renderHistory(){
+  const ul=document.getElementById("orderHistory"); ul.innerHTML="";
+  if(history.length===0){ul.innerHTML="<li>No past orders yet.</li>"; return;}
+  history.forEach(o=>{ul.innerHTML+=`<li>${o.date} - ₹${o.total} | 📍 ${o.address} 📞 ${o.phone}</li>`;});
+}
 
-    function checkout() {
-      if (cart.length === 0) { alert("Your cart is empty!"); return; }
-      document.getElementById("paymentSection").style.display = "block";
-    }
+// On load
+window.onload=()=>{if(localStorage.getItem("currentUser")){document.getElementById("loginPage").style.display="none"; document.getElementById("foodPage").style.display="block"; renderItems(); renderHistory();}}
+</script>
 
-    function showPaymentOption() {
-      document.getElementById("upiDetails").style.display = "none";
-      document.getElementById("cardDetails").style.display = "none";
-      document.getElementById("codDetails").style.display = "none";
-      document.getElementById("walletDetails").style.display = "none";
-      let method = document.getElementById("paymentMethod").value;
-      if (method === "upi") document.getElementById("upiDetails").style.display = "block";
-      if (method === "card") document.getElementById("cardDetails").style.display = "block";
-      if (method === "cod") document.getElementById("codDetails").style.display = "block";
-      if (method === "wallet") document.getElementById("walletDetails").style.display = "block";
-    }
-
-    function showDelivery() {
-      document.getElementById("deliverySection").style.display = "block";
-    }
-
-    function placeOrder() {
-      const address = document.getElementById("address").value;
-      const phone = document.getElementById("phone").value;
-      if (!address || !phone) { alert("Please enter delivery details!"); return; }
-
-      document.getElementById("successMessage").style.display = "block";
-      history.push({ items: cart, total: document.getElementById("total").innerText, address, phone, date: new Date().toLocaleString() });
-      localStorage.setItem("orderHistory", JSON.stringify(history));
-
-      cart = []; renderCart();
-      document.getElementById("paymentSection").style.display = "none";
-      document.getElementById("deliverySection").style.display = "none";
-      renderHistory();
-    }
-
-    function renderHistory() {
-      const orderHistory = document.getElementById("orderHistory");
-      orderHistory.innerHTML = "";
-      if (history.length === 0) {
-        orderHistory.innerHTML = "<li>No past orders yet.</li>";
-        return;
-      }
-      history.forEach(order => {
-        orderHistory.innerHTML += `<li><b>${order.date}</b> - ₹${order.total} <br>📍 ${order.address} 📞 ${order.phone}</li>`;
-      });
-    }
-  </script>
 </body>
 </html>
